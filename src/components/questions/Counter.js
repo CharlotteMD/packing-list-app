@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import BasicOutfits from "../BasicOutfits";
+import React, { useState } from 'react'
+import BasicOutfits from '../BasicOutfits'
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   return (
     <div>
@@ -14,7 +14,7 @@ const Counter = () => {
 
       <BasicOutfits count={count} />
     </div>
-  );
-};
+  )
+}
 
-export default Counter;
+export default Counter

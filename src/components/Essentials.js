@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 const Essentials = () => {
-  const [leaveUk, setLeaveUk] = useState(true);
+  const [leaveUk, setLeaveUk] = useState(true)
 
   const internationalTravelItems = [
-    "passport",
-    "travel insurance",
-    "boarding pass/tickets"
-  ];
+    'passport',
+    'travel insurance',
+    'boarding pass/tickets'
+  ]
 
   const essentialItems = [
-    "money/credit cards",
-    "emergency contact details",
-    "phone and other essential electronic devices",
-    "chargers",
-    "house keys",
-    "medication"
-  ];
+    'money/credit cards',
+    'emergency contact details',
+    'phone and other essential electronic devices',
+    'chargers',
+    'house keys',
+    'medication'
+  ]
 
-  console.log(leaveUk);
+  console.log(leaveUk)
   return (
     <div>
       <p>Where are you going?</p>
@@ -29,18 +29,18 @@ const Essentials = () => {
       <ul>
         {!!leaveUk && (
           <div>
-            {internationalTravelItems.map(i => (
+            {internationalTravelItems.map((i) => (
               <li>{i}</li>
             ))}
           </div>
         )}
 
-        {essentialItems.map(i => (
+        {essentialItems.map((i) => (
           <li>{i}</li>
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Essentials;
+export default Essentials

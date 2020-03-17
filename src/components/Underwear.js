@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-const Underwear = props => {
-  const [woman, setWoman] = useState(false);
-  const [sunshine, setSunshine] = useState(false);
+const Underwear = (props) => {
+  const [woman, setWoman] = useState(false)
+  const [sunshine, setSunshine] = useState(false)
 
-  const bras = Math.ceil(props.count / 4);
+  const bras = Math.ceil(props.count / 4)
 
   return (
     <div>
@@ -20,14 +20,14 @@ const Underwear = props => {
           <p>Take {bras} bras</p>
           {!!sunshine && (
             <p>
-              Maybe some could be bikini tops ;){" "}
+              Maybe some could be bikini tops ;){' '}
               <span>Don't forget strapless bras!</span>
             </p>
           )}
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Underwear;
+export default Underwear

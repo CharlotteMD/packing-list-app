@@ -1,5 +1,5 @@
-import React from "react";
-import axios from "axios";
+import React from 'react'
+import axios from 'axios'
 
 const Weather = () => {
   //   const currentWeather = null;
@@ -27,6 +27,6 @@ const Weather = () => {
     <div>
       <h3>Where are you going?</h3>
     </div>
-  );
-};
-export default Weather;
+  )
+}
+export default Weather

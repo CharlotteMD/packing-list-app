@@ -1,8 +1,8 @@
-import React from "react";
-import "./App.css";
-import Counter from "./components/questions/Counter";
+import React from 'react'
+import './App.css'
+import Counter from './components/questions/Counter'
 // import Weather from "./Weather";
-import Essentials from "./components/Essentials";
+import Essentials from './components/Essentials'
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <Counter />
       {/* <Weather /> */}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
