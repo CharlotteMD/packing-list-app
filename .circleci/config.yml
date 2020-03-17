@@ -1,0 +1,30 @@
+version: 2 # will always be v2 of circle ci
+jobs:
+  test:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm install
+  build:
+    docker:
+      - image: circleci/node:lts # this will almost always be the case unless the project needs a custom docker file
+    steps:
+      - checkout # step in ci that gets code from GitHub
+      - run:
+          name: Run tests
+          command: 'echo "I will build these tests later!"'
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Build React app
+          command: npm run build
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - build
