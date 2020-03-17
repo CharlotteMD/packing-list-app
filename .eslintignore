@@ -1,0 +1,5 @@
+/.circleci
+/amplify
+/build
+/node_modules
+/public
