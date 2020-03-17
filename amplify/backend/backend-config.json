@@ -1,0 +1,20 @@
+{
+	"api": {
+		"beachlist": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "API Key for beach packing list app",
+							"apiKeyExpirationDays": "90"
+						}
+					}
+				}
+			}
+		}
+	}
+}

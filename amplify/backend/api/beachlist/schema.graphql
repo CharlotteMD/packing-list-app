@@ -1,0 +1,11 @@
+type List @model {
+  id: ID!
+  listName: String!
+  items: [Item] @connection(name: "ListItems")
+}
+type Items @model {
+  id: ID!
+  title: String!
+  list: List @connection(name: "ListItems")
+  tags: Array[]
+}
