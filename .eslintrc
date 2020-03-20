@@ -1,5 +1,6 @@
 {
   "parser": "babel-eslint",
+  "plugins": ["jsx-a11y"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaFeatures": {
@@ -12,5 +13,8 @@
       "files": ["src/**/*.js"]
     }
   ],
-  "extends": ["react-app", "plugin:prettier/recommended"]
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "rules": {
+    "jsx-a11y/accessible-emoji": 0
+  }
 }

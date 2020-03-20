@@ -30,12 +30,12 @@ const App = () => {
         <p>Where are you going?</p>
         {!!leaveUk && (
           <p>
-            <EmojiSpan aria-label="leaving UK">🛫</EmojiSpan>
+            <EmojiSpan ariaRef="leave-UK">🛫</EmojiSpan>
           </p>
         )}
         {!leaveUk && (
           <p>
-            <EmojiSpan aria-label="UK">🇬🇧</EmojiSpan>
+            <EmojiSpan ariaRef="UK">🇬🇧</EmojiSpan>
           </p>
         )}
         <BasicButton textButton onClick={() => setLeaveUk(false)}>
@@ -57,13 +57,13 @@ const App = () => {
         <h5>What weather are you expecting?</h5>
         <p>{weather}</p>
         <BasicButton backgroundColor onClick={() => setWeather('sun')}>
-          <EmojiSpan aria-label="sun">☀️</EmojiSpan>
+          <EmojiSpan ariaRef="sun">☀️</EmojiSpan>
         </BasicButton>
         <BasicButton backgroundColor onClick={() => setWeather('rain')}>
-          <EmojiSpan aria-label="rain">☔️</EmojiSpan>
+          <EmojiSpan ariaRef="rain">☔️</EmojiSpan>
         </BasicButton>
         <BasicButton backgroundColor onClick={() => setWeather('snow')}>
-          <EmojiSpan aria-label="snow">❄️</EmojiSpan>
+          <EmojiSpan ariaRef="snow">❄️</EmojiSpan>
         </BasicButton>
       </div>
       <div className="packingList">
@@ -78,7 +78,7 @@ const App = () => {
         See the list online
       </BasicButton>
       <AnchorLink href="https://www.charlottemdavies.co.uk">
-        <EmojiSpan aria-label="Charlotte Davies">👩🏻‍💻</EmojiSpan>
+        <EmojiSpan ariaRef="Charlotte Davies">👩🏻‍💻</EmojiSpan>
         Charly McDavies
       </AnchorLink>
     </div>

@@ -33,9 +33,10 @@ export const AnchorLink = styled.a`
   color: orange;
 `
 
-export const EmojiSpan = styled.span.attrs({
-  role: 'img'
-})`
+export const EmojiSpan = styled.span.attrs(({ ariaRef }) => ({
+  role: 'img',
+  'aria-label': ariaRef || 'emoji'
+}))`
   font-size: 100px;
   line-height: 1.5em;
 `
