@@ -9,3 +9,7 @@ p {
 li {
   color: dodgerblue;
 }
+
+span {
+  font-size: 100px;
+}

@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 
-const Essentials = () => {
-  const [leaveUk, setLeaveUk] = useState(true)
-
+const Essentials = ({ leaveUk }) => {
   const internationalTravelItems = [
     'passport',
     'travel insurance',
@@ -18,14 +16,8 @@ const Essentials = () => {
     'medication'
   ]
 
-  console.log(leaveUk)
   return (
     <div>
-      <p>Where are you going?</p>
-      <button onClick={() => setLeaveUk(false)}>Staying in the UK</button>
-      <button onClick={() => setLeaveUk(true)}>Heading to Europe</button>
-      <button onClick={() => setLeaveUk(true)}>Going far away</button>
-
       <ul>
         {!!leaveUk && (
           <div>
