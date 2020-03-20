@@ -1,4 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
+import { ListItem } from '../../global-styles'
 
 const Essentials = ({ leaveUk }) => {
   const internationalTravelItems = [
@@ -16,19 +18,24 @@ const Essentials = ({ leaveUk }) => {
     'medication'
   ]
 
+  const EssentialItemsSt = styled(ListItem)`
+    color: red;
+    font-weight: bold;
+  `
+
   return (
     <div>
       <ul>
         {!!leaveUk && (
           <div>
             {internationalTravelItems.map((i) => (
-              <li>{i}</li>
+              <EssentialItemsSt>{i}</EssentialItemsSt>
             ))}
           </div>
         )}
 
         {essentialItems.map((i) => (
-          <li>{i}</li>
+          <ListItem>{i}</ListItem>
         ))}
       </ul>
     </div>
