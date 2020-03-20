@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
+import { H1, BasicButton } from './global-styles'
 
 import BasicOutfits from './components/items/BasicOutfits'
 import Essentials from './components/items/Essentials'
@@ -11,6 +12,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <H1>Let's send you packing!</H1>
       <div className="questions">
         <p>Where are you going?</p>
         {!!leaveUk && (
@@ -27,31 +29,39 @@ const App = () => {
             </span>
           </p>
         )}
-        <button onClick={() => setLeaveUk(false)}>Staying in the UK</button>
-        <button onClick={() => setLeaveUk(true)}>Going far away</button>
+        <BasicButton textButton onClick={() => setLeaveUk(false)}>
+          Staying in the UK
+        </BasicButton>
+        <BasicButton textButton onClick={() => setLeaveUk(true)}>
+          Going far away
+        </BasicButton>
 
         <h3>How many nights will you be away for?</h3>
         <p>{count} nights</p>
-        <button onClick={() => setCount(count - 1)}>-1 night</button>
-        <button onClick={() => setCount(count + 1)}>+1 night</button>
+        <BasicButton textButton onClick={() => setCount(count - 1)}>
+          -1 night
+        </BasicButton>
+        <BasicButton textButton onClick={() => setCount(count + 1)}>
+          +1 night
+        </BasicButton>
 
         <h5>What weather are you expecting?</h5>
         <p>{weather}</p>
-        <button onClick={() => setWeather('sun')}>
+        <BasicButton onClick={() => setWeather('sun')}>
           <span role="img" aria-label="sun">
             ☀️
           </span>
-        </button>
-        <button onClick={() => setWeather('rain')}>
+        </BasicButton>
+        <BasicButton onClick={() => setWeather('rain')}>
           <span role="img" aria-label="rain">
             ☔️
           </span>
-        </button>
-        <button onClick={() => setWeather('snow')}>
+        </BasicButton>
+        <BasicButton onClick={() => setWeather('snow')}>
           <span role="img" aria-label="snow">
             ❄️
           </span>
-        </button>
+        </BasicButton>
       </div>
       <div className="packingList">
         <h1>You should take</h1>
