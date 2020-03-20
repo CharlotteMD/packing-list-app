@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ListItem } from '../../global-styles'
+import { ListItem } from '../../style/global-styles'
 
 const Essentials = ({ leaveUk }) => {
   const internationalTravelItems = [

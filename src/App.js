@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import './App.css'
-import { H1, BasicButton, AnchorLink, EmojiSpan, Rotate } from './global-styles'
-
+import { H1, BasicButton, AnchorLink, EmojiSpan } from './style/global-styles'
+import { Rotate, FontGrow } from './style/keyframe-animations'
 import BasicOutfits from './components/items/BasicOutfits'
 import Essentials from './components/items/Essentials'
 
@@ -25,21 +24,17 @@ const App = () => {
   return (
     <div className="App">
       <H1 textColor="orange">Let's send you packing!</H1>
-      <H1>Holiday time!</H1>
+      <FontGrow>
+        <H1>Holiday time!</H1>
+      </FontGrow>
       <div className="questions">
         <p>Where are you going?</p>
         {!!leaveUk && (
-          <p>
-            <Rotate>
-              <EmojiSpan ariaRef="leave-UK">🛫</EmojiSpan>
-            </Rotate>
-          </p>
+          <Rotate>
+            <EmojiSpan ariaRef="leave-UK">🛫</EmojiSpan>
+          </Rotate>
         )}
-        {!leaveUk && (
-          <p>
-            <EmojiSpan ariaRef="UK">🇬🇧</EmojiSpan>
-          </p>
-        )}
+        {!leaveUk && <EmojiSpan ariaRef="UK">🇬🇧</EmojiSpan>}
         <BasicButton textButton onClick={() => setLeaveUk(false)}>
           Staying in the UK
         </BasicButton>
