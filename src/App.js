@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import './App.css'
-import { H1, BasicButton, AnchorLink, EmojiSpan } from './global-styles'
+import { H1, BasicButton, AnchorLink, EmojiSpan, Rotate } from './global-styles'
 
 import BasicOutfits from './components/items/BasicOutfits'
 import Essentials from './components/items/Essentials'
@@ -30,7 +30,9 @@ const App = () => {
         <p>Where are you going?</p>
         {!!leaveUk && (
           <p>
-            <EmojiSpan ariaRef="leave-UK">🛫</EmojiSpan>
+            <Rotate>
+              <EmojiSpan ariaRef="leave-UK">🛫</EmojiSpan>
+            </Rotate>
           </p>
         )}
         {!leaveUk && (
