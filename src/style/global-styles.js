@@ -7,7 +7,7 @@ export const H1 = styled.h1`
 
 export const BasicButton = styled.button`
   border: none;
-  background-color: transparent;
+  background: ${(props) => props.theme.colors.background};
   height: auto;
   color: purple;
 
