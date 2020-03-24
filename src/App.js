@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { css, ThemeProvider } from 'styled-components'
 import { H1, BasicButton, AnchorLink, EmojiSpan } from './style/global-styles'
 import SummerTheme from './style/themes/summerTheme'
+import WinterTheme from './style/themes/winterTheme'
 import { Rotate, FontGrow } from './style/keyframe-animations'
 import BasicOutfits from './components/items/BasicOutfits'
 import Essentials from './components/items/Essentials'
@@ -21,10 +22,28 @@ const App = () => {
   const [count, setCount] = useState(0)
   const [leaveUk, setLeaveUk] = useState()
   const [weather, setWeather] = useState('not sure')
+  const [theme, setTheme] = useState({ SummerTheme })
+
+  const toggleTheme = () => {
+    if (theme === 'SummerTheme') {
+      setTheme('WinterTheme')
+    } else {
+      setTheme('SummerTheme')
+    }
+  }
 
   return (
-    <ThemeProvider theme={SummerTheme}>
+    <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
       <div className="App">
+        {/* <BasicButton textButton onClick={() => setTheme({ WinterTheme })}>
+          Winter Holiday
+        </BasicButton>
+        <BasicButton textButton onClick={() => setTheme({ SummerTheme })}>
+          Summer Holiday
+        </BasicButton> */}
+
+        <button onClick={toggleTheme}>Toggle theme</button>
+
         <H1 textColor="orange">Let's send you packing!</H1>
         <FontGrow>
           <H1>Holiday time!</H1>
