@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import styled, { css, ThemeProvider } from 'styled-components'
-import { H1, BasicButton, Anchorlink, EmojiSpan } from './style/global-styles'
+import { ThemeProvider } from 'styled-components'
+import { BasicButton, EmojiSpan } from './style/global-styles'
+import { CountText } from './style/App-styles'
 import SummerTheme from './style/themes/summerTheme'
 import WinterTheme from './style/themes/winterTheme'
-import { Rotate, FontGrow } from './style/keyframe-animations'
+import { Rotate } from './style/keyframe-animations'
+import { Header } from './components/App/Header.js'
+import { Footer } from './components/App/Footer.js'
 import BasicOutfits from './components/items/BasicOutfits'
 import Essentials from './components/items/Essentials'
-
-const CountText = styled.p`
-  color: blue;
-
-  ${(props) =>
-    props.count &&
-    props.count > 3 &&
-    css`
-      color: orange;
-    `};
-`
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -62,10 +54,8 @@ const App = () => {
         <button onClick={summerHoliday}>Summer hols</button>
         <button onClick={winterHoliday}>Winter hols</button>
 
-        <H1 textColor="orange">Let's send you packing!</H1>
-        <FontGrow>
-          <H1>Holiday time!</H1>
-        </FontGrow>
+        <Header />
+
         <div className="questions">
           <p>Where are you going?</p>
           {!!leaveUk && (
@@ -105,34 +95,13 @@ const App = () => {
           <BasicButton textButton onClick={() => setCount(count + 1)}>
             +1 night
           </BasicButton>
-
-          <h5>What weather are you expecting?</h5>
-          <p>{weather}</p>
-          <BasicButton backgroundColor onClick={() => setWeather('sun')}>
-            <EmojiSpan ariaRef="sun">☀️</EmojiSpan>
-          </BasicButton>
-          <BasicButton backgroundColor onClick={() => setWeather('rain')}>
-            <EmojiSpan ariaRef="rain">☔️</EmojiSpan>
-          </BasicButton>
-          <BasicButton backgroundColor onClick={() => setWeather('snow')}>
-            <EmojiSpan ariaRef="snow">❄️</EmojiSpan>
-          </BasicButton>
         </div>
         <div className="packingList">
           <h1>You should take</h1>
           <Essentials leaveUk={leaveUk} />
           <BasicOutfits count={count} />
         </div>
-        <BasicButton
-          as="Anchorlink"
-          href="https://www.skyscanner.net/news/tips/skyscanners-essential-packing-list"
-        >
-          See the list online
-        </BasicButton>
-        <Anchorlink href="https://www.charlottemdavies.co.uk">
-          <EmojiSpan ariaRef="Charlotte Davies">👩🏻‍💻</EmojiSpan>
-          Charly McDavies
-        </Anchorlink>
+        <Footer />
       </div>
     </ThemeProvider>
   )
