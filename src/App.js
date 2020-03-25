@@ -38,7 +38,7 @@ const App = () => {
   async function getWeather() {
     try {
       const result = await axios.get(
-        `http://api.openweathermap.org/data/2.5/weather?q=london&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
+        `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
         {
           crossdomain: true
         }
