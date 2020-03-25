@@ -23,14 +23,14 @@ const App = () => {
   const [count, setCount] = useState(0)
   const [leaveUk, setLeaveUk] = useState()
   const [weather, setWeather] = useState('not sure')
-  const [theme, setTheme] = useState({ SummerTheme })
+  const [theme, setTheme] = useState('SummerTheme')
 
-  const toggleTheme = () => {
-    if (theme === 'SummerTheme') {
-      setTheme('WinterTheme')
-    } else {
-      setTheme('SummerTheme')
-    }
+  const summerHoliday = () => {
+    setTheme('SummerTheme')
+  }
+
+  const winterHoliday = () => {
+    setTheme('WinterTheme')
   }
 
   const currentWeather = null
@@ -59,14 +59,8 @@ const App = () => {
   return (
     <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
       <div className="App">
-        {/* <BasicButton textButton onClick={() => setTheme({ WinterTheme })}>
-          Winter Holiday
-        </BasicButton>
-        <BasicButton textButton onClick={() => setTheme({ SummerTheme })}>
-          Summer Holiday
-        </BasicButton> */}
-
-        <button onClick={toggleTheme}>Toggle theme</button>
+        <button onClick={summerHoliday}>Summer hols</button>
+        <button onClick={winterHoliday}>Winter hols</button>
 
         <H1 textColor="orange">Let's send you packing!</H1>
         <FontGrow>
