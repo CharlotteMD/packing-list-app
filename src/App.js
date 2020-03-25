@@ -40,7 +40,7 @@ const App = () => {
     try {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
       console.log(url)
-      const result = await axios
+      await axios
         .get(
           `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
           {
