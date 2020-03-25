@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled, { css, ThemeProvider } from 'styled-components'
 import { H1, BasicButton, AnchorLink, EmojiSpan } from './style/global-styles'
@@ -24,6 +24,7 @@ const App = () => {
   const [leaveUk, setLeaveUk] = useState()
   const [weather, setWeather] = useState('not sure')
   const [theme, setTheme] = useState('SummerTheme')
+  const [location, setLocation] = useState('london')
 
   const summerHoliday = () => {
     setTheme('SummerTheme')
@@ -33,28 +34,37 @@ const App = () => {
     setTheme('WinterTheme')
   }
 
-  const currentWeather = null
+  const currentWeather = ''
 
   async function getWeather() {
     try {
-      const result = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
-        {
-          crossdomain: true
-        }
-      )
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
+      console.log(url)
+      const result = await axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
+          {
+            crossdomain: true
+          }
+        )
+        .then((result) => {
+          const currentWeather = result.data.weather[0].description
+          setWeather(currentWeather)
+          console.log(currentWeather)
+          console.log(weather)
+        })
 
-      const currentWeather = result.data.weather[0].description
-
-      console.log(currentWeather)
+      console.log('Here', currentWeather)
     } catch (e) {
       console.error(e)
     }
   }
 
-  getWeather()
-
-  console.log(currentWeather)
+  useEffect(() => {
+    console.log('Weather now', currentWeather)
+    getWeather()
+    console.log('Weather now', currentWeather)
+  })
 
   return (
     <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
@@ -80,6 +90,22 @@ const App = () => {
           <BasicButton textButton onClick={() => setLeaveUk(true)}>
             Going far away
           </BasicButton>
+
+          <div className="location">
+            <h2>Where are you going?</h2>
+            <p>I'm going to {location}</p>
+            {weather && <p>The weather is {weather}</p>}
+
+            <BasicButton onClick={() => setLocation('london')}>
+              <EmojiSpan ariaRef="UK">🇬🇧</EmojiSpan>
+            </BasicButton>
+            <BasicButton onClick={() => setLocation('bangkok')}>
+              <EmojiSpan ariaRef="Thailand">🇹🇭</EmojiSpan>
+            </BasicButton>
+            <BasicButton onClick={() => setLocation('oslo')}>
+              <EmojiSpan ariaRef="Norway">🇹🇳</EmojiSpan>
+            </BasicButton>
+          </div>
 
           <h3>How many nights will you be away for?</h3>
           <CountText count={count}>{count} nights</CountText>
