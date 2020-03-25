@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled, { css, ThemeProvider } from 'styled-components'
 import { H1, BasicButton, AnchorLink, EmojiSpan } from './style/global-styles'
 import SummerTheme from './style/themes/summerTheme'
