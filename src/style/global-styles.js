@@ -28,7 +28,7 @@ export const ListItem = styled.li`
   font-family: cursive;
 `
 
-export const AnchorLink = styled.a`
+export const Anchorlink = styled.a`
   text-decoration: none;
   color: orange;
 `

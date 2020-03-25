@@ -29,13 +29,13 @@ const Essentials = ({ leaveUk }) => {
         {!!leaveUk && (
           <div>
             {internationalTravelItems.map((i) => (
-              <EssentialItemsSt>{i}</EssentialItemsSt>
+              <EssentialItemsSt key={i}>{i}</EssentialItemsSt>
             ))}
           </div>
         )}
 
         {essentialItems.map((i) => (
-          <ListItem>{i}</ListItem>
+          <ListItem key={i}>{i}</ListItem>
         ))}
       </ul>
     </div>

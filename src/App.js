@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled, { css, ThemeProvider } from 'styled-components'
-import { H1, BasicButton, AnchorLink, EmojiSpan } from './style/global-styles'
+import { H1, BasicButton, Anchorlink, EmojiSpan } from './style/global-styles'
 import SummerTheme from './style/themes/summerTheme'
 import WinterTheme from './style/themes/winterTheme'
 import { Rotate, FontGrow } from './style/keyframe-animations'
@@ -34,12 +34,8 @@ const App = () => {
     setTheme('WinterTheme')
   }
 
-  const currentWeather = ''
-
   async function getWeather() {
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
-      console.log(url)
       await axios
         .get(
           `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
@@ -50,20 +46,14 @@ const App = () => {
         .then((result) => {
           const currentWeather = result.data.weather[0].description
           setWeather(currentWeather)
-          console.log(currentWeather)
-          console.log(weather)
         })
-
-      console.log('Here', currentWeather)
     } catch (e) {
       console.error(e)
     }
   }
 
   useEffect(() => {
-    console.log('Weather now', currentWeather)
     getWeather()
-    console.log('Weather now', currentWeather)
   })
 
   return (
@@ -134,15 +124,15 @@ const App = () => {
           <BasicOutfits count={count} />
         </div>
         <BasicButton
-          as="AnchorLink"
+          as="Anchorlink"
           href="https://www.skyscanner.net/news/tips/skyscanners-essential-packing-list"
         >
           See the list online
         </BasicButton>
-        <AnchorLink href="https://www.charlottemdavies.co.uk">
+        <Anchorlink href="https://www.charlottemdavies.co.uk">
           <EmojiSpan ariaRef="Charlotte Davies">👩🏻‍💻</EmojiSpan>
           Charly McDavies
-        </AnchorLink>
+        </Anchorlink>
       </div>
     </ThemeProvider>
   )
