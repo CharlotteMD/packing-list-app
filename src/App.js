@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import styled, { css, ThemeProvider } from 'styled-components'
 import { H1, BasicButton, AnchorLink, EmojiSpan } from './style/global-styles'
 import SummerTheme from './style/themes/summerTheme'
@@ -31,6 +32,29 @@ const App = () => {
       setTheme('SummerTheme')
     }
   }
+
+  const currentWeather = null
+
+  async function getWeather() {
+    try {
+      const result = await axios.get(
+        `http://api.openweathermap.org/data/2.5/weather?q=london&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
+        {
+          crossdomain: true
+        }
+      )
+
+      const currentWeather = result.data.weather[0].description
+
+      console.log(currentWeather)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  getWeather()
+
+  console.log(currentWeather)
 
   return (
     <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
