@@ -17,6 +17,7 @@ const App = () => {
   const [weather, setWeather] = useState('not sure')
   const [theme, setTheme] = useState('SummerTheme')
   const [location, setLocation] = useState('london')
+  const [countries, setCountries] = useState()
 
   const summerHoliday = () => {
     setTheme('SummerTheme')
@@ -44,10 +45,6 @@ const App = () => {
     }
   }
 
-  // let countriesList = []
-  // let countryInformation = {}
-  let countriesList = []
-
   async function getCountry() {
     try {
       await axios
@@ -55,12 +52,13 @@ const App = () => {
           crossdomain: true
         })
         .then((result) => {
+          let countriesList = []
           const countryInformation = result.data
 
           countryInformation.forEach((countries) =>
             countriesList.push(countries.name)
           )
-          return countriesList
+          setCountries(countriesList)
         })
     } catch (e) {
       console.error(e)
@@ -72,11 +70,6 @@ const App = () => {
   })
 
   getCountry()
-  console.log('this is my countries list', countriesList)
-
-  const here = countriesList.map((i) => console.log(i.name))
-
-  console.log(here)
 
   return (
     <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
@@ -88,9 +81,13 @@ const App = () => {
 
         <div className="questions">
           <p>Where are you going?</p>
-          <ul>
-            <li></li>
-          </ul>
+          {!!countries && (
+            <ul>
+              {countries.map((i) => (
+                <li key={i}>{i}</li>
+              ))}
+            </ul>
+          )}
 
           {!!leaveUk && (
             <Rotate>
@@ -104,7 +101,6 @@ const App = () => {
           <BasicButton textButton onClick={() => setLeaveUk(true)}>
             Going far away
           </BasicButton>
-
           <div className="location">
             <h2>Where are you going?</h2>
             <p>I'm going to {location}</p>
@@ -120,7 +116,6 @@ const App = () => {
               <EmojiSpan ariaRef="Norway">🇹🇳</EmojiSpan>
             </BasicButton>
           </div>
-
           <h3>How many nights will you be away for?</h3>
           <CountText count={count}>{count} nights</CountText>
           <BasicButton textButton onClick={() => setCount(count - 1)}>
