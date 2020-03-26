@@ -44,9 +44,39 @@ const App = () => {
     }
   }
 
+  // let countriesList = []
+  // let countryInformation = {}
+  let countriesList = []
+
+  async function getCountry() {
+    try {
+      await axios
+        .get('https://restcountries.eu/rest/v2/all?fields=name;', {
+          crossdomain: true
+        })
+        .then((result) => {
+          const countryInformation = result.data
+
+          countryInformation.forEach((countries) =>
+            countriesList.push(countries.name)
+          )
+          return countriesList
+        })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   useEffect(() => {
     getWeather()
   })
+
+  getCountry()
+  console.log('this is my countries list', countriesList)
+
+  const here = countriesList.map((i) => console.log(i.name))
+
+  console.log(here)
 
   return (
     <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
@@ -58,6 +88,10 @@ const App = () => {
 
         <div className="questions">
           <p>Where are you going?</p>
+          <ul>
+            <li></li>
+          </ul>
+
           {!!leaveUk && (
             <Rotate>
               <EmojiSpan ariaRef="leave-UK">🛫</EmojiSpan>
