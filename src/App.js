@@ -20,6 +20,7 @@ const App = () => {
   const [location, setLocation] = useState('london')
   const [countries, setCountries] = useState()
   const [holidayDestination, setHolidayDestination] = useState()
+  const [countryInformation, setCountryInformation] = useState()
 
   const summerHoliday = () => {
     setTheme('SummerTheme')
@@ -47,31 +48,28 @@ const App = () => {
   //   }
   // }
 
-  // async function getCountry() {
-  //   try {
-  //     await axios
-  //       .get('https://restcountries.eu/rest/v2/all?fields=name;', {
-  //         crossdomain: true
-  //       })
-  //       .then((result) => {
-  //         const countryInformation = result.data
-  //         let countriesList = []
-  //         countryInformation.forEach((countries) =>
-  //           countriesList.push(countries.name)
-  //         )
-  //         setCountries(countriesList)
-  //       })
-  //   } catch (e) {
-  //     console.error(e)
-  //   }
-  // }
+  async function getCountry() {
+    try {
+      await axios
+        .get(`https://restcountries.eu/rest/v2/name/${holidayDestination}`, {
+          crossdomain: true
+        })
+        .then((result) => {
+          const countryData = result.data
+          setCountryInformation(countryData)
+        })
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   useEffect(() => {
     // getWeather()
-    // getCountry()
+    getCountry()
   })
 
   console.log(countriesList)
+  console.log('State set', countryInformation)
 
   return (
     <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
