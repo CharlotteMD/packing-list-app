@@ -7,7 +7,6 @@ import { Header } from './components/App/Header.js'
 import { Footer } from './components/App/Footer.js'
 import BasicOutfits from './components/items/BasicOutfits'
 // import Essentials from './components/items/Essentials'
-import { Questions } from './Questions'
 
 import { BasicButton, EmojiSpan } from './style/global-styles'
 import { CountText } from './style/App-styles'
@@ -133,7 +132,47 @@ const App = () => {
         <button onClick={summerHoliday}>Summer hols</button>
         <button onClick={winterHoliday}>Winter hols</button>
 
-        <Questions />
+        <Header />
+
+        <div className="questions">
+          <p>Where are you going?</p>
+          {!!holidayDestination && <p>I'm going to {holidayDestination}</p>}
+          <ul>
+            {countriesList.map((country) => (
+              <button onClick={() => handleCountryChange(country)}>{country}</button>
+            ))}
+          </ul>
+
+          <div className="location">
+            <h2>Where are you going?</h2>
+            <p>I'm going to {location}</p>
+            {/* {weather && <p>The weather is {weather}</p>} */}
+
+            <BasicButton onClick={() => setLocation('london')}>
+              <EmojiSpan ariaRef="UK">🇬🇧</EmojiSpan>
+            </BasicButton>
+            <BasicButton onClick={() => setLocation('bangkok')}>
+              <EmojiSpan ariaRef="Thailand">🇹🇭</EmojiSpan>
+            </BasicButton>
+            <BasicButton onClick={() => setLocation('oslo')}>
+              <EmojiSpan ariaRef="Norway">🇹🇳</EmojiSpan>
+            </BasicButton>
+          </div>
+          <h3>How many nights will you be away for?</h3>
+          <CountText count={count}>{count} nights</CountText>
+          <BasicButton textButton onClick={() => setCount(count - 1)}>
+            -1 night
+          </BasicButton>
+          <BasicButton textButton onClick={() => setCount(count + 1)}>
+            +1 night
+          </BasicButton>
+        </div>
+        <div className="packingList">
+          <h1>You should take</h1>
+          {/* <Essentials leaveUk={leaveUk} /> */}
+          <BasicOutfits count={count} />
+        </div>
+        <Footer />
       </div>
     </ThemeProvider>
   )
