@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import countriesList from './countries'
 
 export const Questions = () => {
   const [holidayDestination, setHolidayDestination] = useState()
-  //   const [updateCountry, setUpdateCountry] = useState(false)
+  const [updatingCountry, setUpdatingCountry] = useState(false)
   const [fullCountryData, setFullCountryData] = useState()
 
-  async function getCountryInformation() {
+  async function getCountryInformation(holidayDestination) {
     try {
       await axios
         .get(`https://restcountries.eu/rest/v2/name/${holidayDestination}`, {
@@ -17,50 +17,39 @@ export const Questions = () => {
         .then((result) => {
           const countryData = result.data
           setFullCountryData(countryData)
-          console.log('all info', fullCountryData)
-          //   setUpdateCountry(false)
+          setUpdatingCountry(false)
+          return countryData
         })
     } catch (e) {
       console.error(e)
     }
   }
 
-  //   const handleCountryChange = (country) => {
-  //     setHolidayDestination(country)
-  //     setUpdateCountry(true)
-  //     getCountryInformation()
-  //     // getLatLng()
-  //   }
-
-  async function handleCountryChange(country) {
-    // setUpdateCountry(true)
-    await setHolidayDestination(country)
-    await getCountryInformation
-    // setUpdateCountry(false)
+  const handleCountryChange = (country) => {
+    setHolidayDestination(country)
+    setUpdatingCountry(true)
   }
 
-  //   const getLatLng = () => {
-  //     if (!!countryInformation) {
-  //       console.log('latlng country', countryInformation)
-  //       const latLng = countryInformation[0].latlng
-  //       console.log('latlng', latLng)
-  //       const lattitude = countryInformation[0].latlng[0]
-  //       console.log('lat', lattitude)
-  //       const longitude = countryInformation[0].latlng[1]
-  //       console.log('lng', longitude)
-  //     }
-  //   }
+  useEffect(() => {
+    if (!!updatingCountry) {
+      getCountryInformation(holidayDestination)
+      console.log(fullCountryData)
+    } else {
+    }
+  })
 
   return (
     <div className="questions">
       <p>Where are you going?</p>
       {!!holidayDestination && <p>I'm going to {holidayDestination}</p>}
 
-      <ul id="mylist">
-        {countriesList.map((country) => (
-          <button onClick={() => handleCountryChange(country)}>{country}</button>
-        ))}
-      </ul>
+      {!updatingCountry && (
+        <ul id="mylist">
+          {countriesList.map((country) => (
+            <button onClick={() => handleCountryChange(country)}>{country}</button>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
