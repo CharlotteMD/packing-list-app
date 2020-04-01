@@ -2,6 +2,6 @@ import Winter from './winterColors'
 
 export default {
   colors: {
-    background: Winter.colors.purple
+    background: Winter.colors.lightGrey
   }
 }

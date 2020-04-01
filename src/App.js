@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 
+import { Body } from './style/global-styles'
+
 import { Questions } from './Questions'
 
 import SummerTheme from './style/themes/summerTheme'
@@ -19,11 +21,13 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
-      <div className="App">
-        <button onClick={summerHoliday}>Summer hols</button>
-        <button onClick={winterHoliday}>Winter hols</button>
-        <Questions />
-      </div>
+      <Body>
+        <div className="App">
+          <button onClick={summerHoliday}>Summer hols</button>
+          <button onClick={winterHoliday}>Winter hols</button>
+          <Questions />
+        </div>
+      </Body>
     </ThemeProvider>
   )
 }
