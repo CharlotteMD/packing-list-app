@@ -41,6 +41,23 @@ export const Questions = () => {
     setHolidayDestination(country, setUpdatingCountry(true))
   }
 
+  async function getWeather() {
+    try {
+      await axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
+          {
+            crossdomain: true
+          }
+        )
+        .then((result) => {
+          console.log(result)
+        })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   useEffect(() => {
     if (!!updatingCountry) {
       getCountryInformation(holidayDestination)
@@ -48,13 +65,15 @@ export const Questions = () => {
 
     if (!!fullCountryData) {
       const newCountryLat = fullCountryData.latlng[0]
+      const apiLat = Math.round(newCountryLat)
       const newCountryLng = fullCountryData.latlng[1]
-      getLatAndLang(newCountryLat, newCountryLng)
+      const apiLng = Math.round(newCountryLng)
+      getLatAndLang(apiLat, apiLng)
       console.log('here', goWeather)
     }
 
     if (!!goWeather) {
-      console.log('Ready to get the weather')
+      getWeather()
     }
   })
 
