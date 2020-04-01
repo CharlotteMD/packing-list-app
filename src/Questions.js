@@ -32,7 +32,6 @@ export const Questions = () => {
   async function getLatAndLang(newCountryLat, newCountryLng) {
     setLat(newCountryLat)
     setLng(newCountryLng)
-    console.log("I'm ready!!", lat, lng)
     await setGoWeather(true)
     return goWeather
   }
@@ -58,6 +57,12 @@ export const Questions = () => {
     }
   }
 
+  const getCountryValue = () => {
+    var selectedCountryFromList = document.getElementById('countrylist')
+    var selectedCountry = selectedCountryFromList.value
+    handleCountryChange(selectedCountry)
+  }
+
   useEffect(() => {
     if (!!updatingCountry) {
       getCountryInformation(holidayDestination)
@@ -69,7 +74,6 @@ export const Questions = () => {
       const newCountryLng = fullCountryData.latlng[1]
       const apiLng = Math.round(newCountryLng)
       getLatAndLang(apiLat, apiLng)
-      console.log('here', goWeather)
     }
 
     if (!!goWeather) {
@@ -83,11 +87,17 @@ export const Questions = () => {
       {!!holidayDestination && <p>I'm going to {holidayDestination}</p>}
 
       {!updatingCountry && (
-        <ul id="mylist">
-          {countriesList.map((country) => (
-            <button onClick={() => handleCountryChange(country)}>{country}</button>
-          ))}
-        </ul>
+        <form action="">
+          <fieldset>
+            <select id="countrylist">
+              {countriesList.map((country) => (
+                <option value={country}>{country}</option>
+                // <button onClick={() => handleCountryChange(country)}>{country}</button>
+              ))}
+            </select>
+            <input type="button" onClick={() => getCountryValue()} />
+          </fieldset>
+        </form>
       )}
     </div>
   )
