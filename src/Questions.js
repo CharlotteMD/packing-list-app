@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import countriesList from './countries'
 
+import { H2, P } from './style/typography'
+
 export const Questions = () => {
   const [holidayDestination, setHolidayDestination] = useState()
   const [updatingCountry, setUpdatingCountry] = useState(false)
@@ -85,8 +87,8 @@ export const Questions = () => {
 
   return (
     <div className="questions">
-      <p>Where are you going?</p>
-      {!!holidayDestination && <p>I'm going to {holidayDestination}</p>}
+      <H2>Where are you going?</H2>
+      {!!holidayDestination && <P>I'm going to {holidayDestination}</P>}
 
       {!updatingCountry && (
         <form action="">

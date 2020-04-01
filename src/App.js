@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { Questions } from './Questions'
 
 import { GlobalStyles } from './style/global-styles'
+import { H1 } from './style/typography'
 import SummerTheme from './style/themes/summerTheme'
 import WinterTheme from './style/themes/winterTheme'
 
@@ -22,7 +23,7 @@ const App = () => {
     <ThemeProvider theme={theme === 'SummerTheme' ? SummerTheme : WinterTheme}>
       <div className="App">
         <GlobalStyles />
-        <h1>You're going on holiday!</h1>
+        <H1>You're going on holiday!</H1>
         <button onClick={summerHoliday}>Summer hols</button>
         <button onClick={winterHoliday}>Winter hols</button>
         <Questions />
