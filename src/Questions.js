@@ -10,6 +10,7 @@ export const Questions = () => {
   const [lat, setLat] = useState()
   const [lng, setLng] = useState()
   const [goWeather, setGoWeather] = useState(false)
+  const [weatherReady, setWeatherReady] = useState(false)
 
   async function getCountryInformation(holidayDestination) {
     try {
@@ -22,6 +23,7 @@ export const Questions = () => {
           const latlng = countryData[0].latlng
           setFullCountryData(countryData[0])
           setUpdatingCountry(false)
+          setWeatherReady(true)
           return latlng
         })
     } catch (e) {
@@ -90,15 +92,20 @@ export const Questions = () => {
         <form action="">
           <fieldset>
             <select id="countrylist">
+              <option value="" disabled selected>
+                Select your destination
+              </option>
               {countriesList.map((country) => (
                 <option value={country}>{country}</option>
                 // <button onClick={() => handleCountryChange(country)}>{country}</button>
               ))}
             </select>
-            <input type="button" onClick={() => getCountryValue()} />
+            <input type="button" onClick={() => getCountryValue()} value="Select" />
           </fieldset>
         </form>
       )}
+
+      {!!weatherReady && <p>Weather is ready!</p>}
     </div>
   )
 }
