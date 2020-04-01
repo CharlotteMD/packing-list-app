@@ -9,6 +9,7 @@ export const Questions = () => {
   const [fullCountryData, setFullCountryData] = useState()
   const [lat, setLat] = useState()
   const [lng, setLng] = useState()
+  const [goWeather, setGoWeather] = useState(false)
 
   async function getCountryInformation(holidayDestination) {
     try {
@@ -28,6 +29,14 @@ export const Questions = () => {
     }
   }
 
+  async function getLatAndLang(newCountryLat, newCountryLng) {
+    setLat(newCountryLat)
+    setLng(newCountryLng)
+    console.log("I'm ready!!", lat, lng)
+    await setGoWeather(true)
+    return goWeather
+  }
+
   const handleCountryChange = (country) => {
     setHolidayDestination(country, setUpdatingCountry(true))
   }
@@ -35,17 +44,17 @@ export const Questions = () => {
   useEffect(() => {
     if (!!updatingCountry) {
       getCountryInformation(holidayDestination)
-    } else {
     }
-  })
 
-  useEffect(() => {
     if (!!fullCountryData) {
       const newCountryLat = fullCountryData.latlng[0]
       const newCountryLng = fullCountryData.latlng[1]
-      setLat(newCountryLat)
-      setLng(newCountryLng)
-    } else {
+      getLatAndLang(newCountryLat, newCountryLng)
+      console.log('here', goWeather)
+    }
+
+    if (!!goWeather) {
+      console.log('Ready to get the weather')
     }
   })
 
