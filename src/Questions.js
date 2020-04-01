@@ -97,7 +97,6 @@ export const Questions = () => {
               </option>
               {countriesList.map((country) => (
                 <option value={country}>{country}</option>
-                // <button onClick={() => handleCountryChange(country)}>{country}</button>
               ))}
             </select>
             <input type="button" onClick={() => getCountryValue()} value="Select" />

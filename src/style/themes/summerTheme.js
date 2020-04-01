@@ -2,6 +2,6 @@ import Summer from './summerColors'
 
 export default {
   colors: {
-    background: Summer.colors.sunshine
+    textColor: Summer.colors.brightBlue
   }
 }
