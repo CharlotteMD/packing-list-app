@@ -1,5 +1,7 @@
+import Summer from './summerColors'
+
 export default {
   colors: {
-    background: '#F2A541'
+    background: Summer.colors.sunshine
   }
 }

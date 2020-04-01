@@ -22,7 +22,6 @@ const App = () => {
       <div className="App">
         <button onClick={summerHoliday}>Summer hols</button>
         <button onClick={winterHoliday}>Winter hols</button>
-
         <Questions />
       </div>
     </ThemeProvider>

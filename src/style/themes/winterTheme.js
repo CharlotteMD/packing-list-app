@@ -1,5 +1,7 @@
+import Winter from './winterColors'
+
 export default {
   colors: {
-    background: '#0A369D'
+    background: Winter.colors.purple
   }
 }
