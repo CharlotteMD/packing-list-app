@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import { Questions } from './Questions'
+import { Questions } from './logic/Questions'
 
 import { GlobalStyles } from './style/global-styles'
 import { H1 } from './style/typography'

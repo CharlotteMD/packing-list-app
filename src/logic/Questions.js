@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import countriesList from './countries'
 
-import { H2, P } from './style/typography'
+import { H2, P } from '../style/typography'
 
 export const Questions = () => {
   const [holidayDestination, setHolidayDestination] = useState()
@@ -13,6 +13,7 @@ export const Questions = () => {
   const [lng, setLng] = useState()
   const [goWeather, setGoWeather] = useState(false)
   const [weatherReady, setWeatherReady] = useState(false)
+  const [fullWeatherData, setFullWeatherData] = useState()
 
   async function getCountryInformation(holidayDestination) {
     try {
@@ -44,17 +45,20 @@ export const Questions = () => {
     setHolidayDestination(country, setUpdatingCountry(true))
   }
 
+  // let fullWeather = {}
+
   async function getWeather() {
     try {
       await axios
         .get(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`,
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`,
           {
             crossdomain: true
           }
         )
         .then((result) => {
-          console.log(result)
+          let fullWeather = result.data
+          return fullWeather
         })
     } catch (e) {
       console.error(e)
@@ -81,8 +85,14 @@ export const Questions = () => {
     }
 
     if (!!goWeather) {
-      getWeather()
+      const getWeatherResult = getWeather()
+      setFullWeatherData(getWeatherResult)
+      console.log(fullWeatherData)
     }
+
+    // if (!!fullWeatherData) {
+    //   console.log(fullWeatherData)
+    // }
   })
 
   return (
@@ -106,7 +116,7 @@ export const Questions = () => {
         </form>
       )}
 
-      {!!weatherReady && <p>Weather is ready!</p>}
+      {/* {!!fullWeatherData && <p>Weather is {}</p>} */}
     </div>
   )
 }
